@@ -4,6 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:issues/config/cubit/app_cubit.dart';
 import 'package:issues/routes.dart';
+import 'package:issues/ui/mi_theme.dart';
 
 void main() {
   runApp(
@@ -20,14 +21,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AppCubit, AppState>(
+      buildWhen: (previous, current) =>
+          previous.locale != current.locale ||
+          previous.themeMode != current.themeMode,
       builder: (context, state) {
         return MaterialApp.router(
           title: 'My Issues',
           locale: state.locale,
           debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-          ),
+          darkTheme: MiTheme.darkTheme,
+          themeMode: state.themeMode,
           localizationsDelegates: const [
             AppLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,
