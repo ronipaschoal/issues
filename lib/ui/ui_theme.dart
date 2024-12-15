@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-sealed class MiTheme {
+sealed class UiTheme {
   static final lightTheme = ThemeData(
     colorScheme: const ColorScheme(
       brightness: Brightness.light,

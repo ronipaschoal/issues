@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:issues/config/cubit/app_cubit.dart';
-import 'package:issues/ui/widgets/mi_scaffold.dart';
+import 'package:issues/pages/home/cubit/home_cubit.dart';
+import 'package:issues/pages/home/widgets/home_issue_card_widget.dart';
+import 'package:issues/ui/widgets/ui_scaffold_widget.dart';
 
 class HomePage extends StatelessWidget {
   final AppCubit appCubit;
@@ -13,9 +16,24 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MiScaffold(
-      appBarTitle: AppLocalizations.of(context)!.issues,
-      child: Center(child: Text(AppLocalizations.of(context)!.hello)),
+    return UiScaffoldWidget(
+      title: AppLocalizations.of(context)!.issues,
+      body: BlocBuilder<HomeCubit, HomeState>(
+        builder: (context, state) {
+          if (state is HomeLoading) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (state is HomeLoaded) {
+            return ListView.separated(
+              itemCount: state.issueList.length,
+              separatorBuilder: (_, __) => const SizedBox(height: 4.0),
+              itemBuilder: (context, index) {
+                return HomeIssueCardWidget(issue: state.issueList[index]);
+              },
+            );
+          }
+          return const SizedBox.shrink();
+        },
+      ),
     );
   }
 }
