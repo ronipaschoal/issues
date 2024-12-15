@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:issues/config/cubit/app_cubit.dart';
 import 'package:issues/domain/models/locale_model.dart';
+import 'package:issues/ui/ui_theme.dart';
 
 class UiScaffoldWidget extends StatelessWidget {
   final String title;
@@ -21,6 +22,9 @@ class UiScaffoldWidget extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
+            surfaceTintColor: state.themeMode == ThemeMode.light
+                ? UiTheme.lightTheme.scaffoldBackgroundColor
+                : UiTheme.darkTheme.scaffoldBackgroundColor,
             title: Text(title),
             actions: [
               IconButton(
