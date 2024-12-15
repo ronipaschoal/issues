@@ -9,7 +9,11 @@ import 'package:issues/ui/ui_theme.dart';
 void main() {
   runApp(
     BlocProvider(
-      create: (_) => AppCubit(),
+      create: (context) => AppCubit(
+        themeMode: Theme.of(context).brightness == Brightness.dark
+            ? ThemeMode.dark
+            : ThemeMode.light,
+      ),
       child: const MyApp(),
     ),
   );

@@ -4,7 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 part 'app_state.dart';
 
 class AppCubit extends Cubit<AppState> {
-  AppCubit() : super(AppState());
+  AppCubit({required ThemeMode themeMode})
+      : super(AppState(themeMode: themeMode));
 
   void changeLocale(Locale locale) {
     emit(state.copyWith(locale: locale));

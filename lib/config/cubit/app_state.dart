@@ -2,11 +2,11 @@ part of 'app_cubit.dart';
 
 class AppState {
   final Locale? locale;
-  final ThemeMode themeMode;
+  final ThemeMode? themeMode;
 
   AppState({
     this.locale,
-    this.themeMode = ThemeMode.system,
+    this.themeMode,
   });
 
   AppState copyWith({
