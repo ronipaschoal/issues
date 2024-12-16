@@ -22,17 +22,22 @@ class UiScaffoldWidget extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            surfaceTintColor: state.themeMode == ThemeMode.light
+            surfaceTintColor: Theme.of(context).brightness == Brightness.light
                 ? UiTheme.lightTheme.scaffoldBackgroundColor
                 : UiTheme.darkTheme.scaffoldBackgroundColor,
             title: Text(title),
             actions: [
-              IconButton(
-                icon: state.themeMode == ThemeMode.light
-                    ? const Icon(Icons.dark_mode_outlined)
-                    : const Icon(Icons.light_mode_outlined),
-                onPressed: appCubit.toggleThemeMode,
-              ),
+              if (Theme.of(context).brightness == Brightness.light) ...{
+                IconButton(
+                  icon: const Icon(Icons.dark_mode_outlined),
+                  onPressed: () => appCubit.toggleThemeMode(ThemeMode.dark),
+                ),
+              } else ...{
+                IconButton(
+                  icon: const Icon(Icons.light_mode_outlined),
+                  onPressed: () => appCubit.toggleThemeMode(ThemeMode.light),
+                ),
+              },
               if (Localizations.localeOf(context) == LocaleEnum.pt.locale) ...{
                 TextButton(
                   onPressed: () => appCubit.changeLocale(LocaleEnum.en.locale),
