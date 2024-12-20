@@ -10,7 +10,11 @@ class AppCubit extends Cubit<AppState> {
     emit(state.copyWith(locale: locale));
   }
 
-  void toggleThemeMode(ThemeMode themeMode) {
+  void toggleThemeMode() {
+    final themeMode = state.themeMode == ThemeMode.light //
+        ? ThemeMode.dark
+        : ThemeMode.light;
+
     emit(state.copyWith(themeMode: themeMode));
   }
 }
