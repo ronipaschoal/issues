@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:issues/config/cubit/app_cubit.dart';
-import 'package:issues/domain/models/locale_model.dart';
-import 'package:issues/ui/ui_theme.dart';
 import 'package:issues/ui/widgets/flutter_banner_widget.dart';
 
 class UiScaffoldWidget extends StatelessWidget {
@@ -19,44 +15,17 @@ class UiScaffoldWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appCubit = context.read<AppCubit>();
-
     return FlutterBannerWidget(
       child: Scaffold(
         appBar: AppBar(
-          elevation: 0.0,
           backgroundColor: Theme.of(context).colorScheme.primary.withAlpha(40),
           surfaceTintColor: Colors.transparent,
+          centerTitle: false,
           title: Text(
             title,
             style: TextStyle(color: Theme.of(context).colorScheme.primary),
+            textAlign: TextAlign.start,
           ),
-          actions: [
-            if (Theme.of(context).brightness == Brightness.light) ...{
-              ElevatedButton.icon(
-                onPressed: appCubit.toggleThemeMode,
-                label: const Icon(Icons.dark_mode_outlined),
-              ),
-            } else ...{
-              ElevatedButton.icon(
-                onPressed: appCubit.toggleThemeMode,
-                label: const Icon(Icons.light_mode_outlined),
-              ),
-            },
-            UiTheme.spacerSmallX,
-            if (Localizations.localeOf(context) == LocaleEnum.pt.locale) ...{
-              ElevatedButton(
-                onPressed: () => appCubit.changeLocale(LocaleEnum.en.locale),
-                child: Text(LocaleEnum.en.text),
-              ),
-            } else ...{
-              ElevatedButton(
-                onPressed: () => appCubit.changeLocale(LocaleEnum.pt.locale),
-                child: Text(LocaleEnum.pt.text),
-              ),
-            },
-            UiTheme.spacerSmallX,
-          ],
         ),
         body: Container(
           decoration: BoxDecoration(

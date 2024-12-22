@@ -1,4 +1,8 @@
 {
+  "english": "Inglês",
+  "portuguese": "Português",
+  "darkMode": "Modo Escuro",
+  "lightMode": "Modo Claro",
   "issues": "Tarefas",
   "noIssues": "Nenhuma tarefa",
   "home": "Home",

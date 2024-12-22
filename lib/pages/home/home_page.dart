@@ -28,26 +28,27 @@ class HomePage extends StatelessWidget {
           if (state is HomeLoading) {
             return const Center(child: CircularProgressIndicator());
           } else if (state is HomeLoaded) {
-            if (state.currentPageIndex == 0) {
-              if (state.issueList.isEmpty) {
-                return Center(
-                  child: Text(AppLocalizations.of(context)!.noIssues),
+            switch (state.currentPageIndex) {
+              case 0:
+                if (state.issueList.isEmpty) {
+                  return Center(
+                    child: Text(AppLocalizations.of(context)!.noIssues),
+                  );
+                }
+                return ListView.separated(
+                  padding: const EdgeInsets.all(UiTheme.spacingSmall),
+                  itemCount: state.issueList.length,
+                  separatorBuilder: (_, __) => UiTheme.spacerSmall,
+                  itemBuilder: (_, index) => HomeIssueCardWidget(
+                    issue: state.issueList[index],
+                  ),
                 );
-              }
-              return ListView.separated(
-                padding: const EdgeInsets.all(UiTheme.spacingSmall),
-                itemCount: state.issueList.length,
-                separatorBuilder: (_, __) => UiTheme.spacerSmall,
-                itemBuilder: (_, index) {
-                  return HomeIssueCardWidget(issue: state.issueList[index]);
-                },
-              );
-            }
-            if (state.currentPageIndex == 1) {
-              return const HomeNewIssueWidget();
-            }
-            if (state.currentPageIndex == 2) {
-              return const HomeMenuWidget();
+              case 1:
+                return const HomeNewIssueWidget();
+              case 2:
+                return HomeMenuWidget(
+                  appCubit: appCubit,
+                );
             }
           }
           return const SizedBox.shrink();

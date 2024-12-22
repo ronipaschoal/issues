@@ -1,4 +1,8 @@
 {
+  "english": "English",
+  "portuguese": "Portuguese",
+  "darkMode": "Dark Mode",
+  "lightMode": "Light Mode",
   "issues": "Issues",
   "noIssues": "No Issues",
   "home": "Home",
