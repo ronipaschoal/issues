@@ -1,4 +1,7 @@
 {
   "issues": "Issues",
-  "hello": "Hello,"
+  "noIssues": "No Issues",
+  "home": "Home",
+  "newIssue": "New Issue",
+  "menu": "Menu"
 }

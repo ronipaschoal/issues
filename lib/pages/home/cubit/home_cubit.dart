@@ -20,4 +20,10 @@ class HomeCubit extends Cubit<HomeState> {
       emit(HomeError('Failed to load issues'));
     }
   }
+
+  void setPageIndex(int index) {
+    if (state is HomeLoaded) {
+      emit((state as HomeLoaded).copyWith(currentPageIndex: index));
+    }
+  }
 }

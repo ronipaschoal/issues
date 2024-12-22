@@ -1,4 +1,7 @@
 {
   "issues": "Tarefas",
-  "hello": "Olá,"
+  "noIssues": "Nenhuma tarefa",
+  "home": "Home",
+  "newIssue": "Nova Tarefa",
+  "menu": "Menu"
 }
