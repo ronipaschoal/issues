@@ -4,6 +4,7 @@ sealed class UiTheme {
   static const double fontSizeLarge = 44.0;
   static const double fontSizeMedium = 24.0;
   static const double fontSizeRegular = 16.0;
+  static const double fontSizeSmall = 14.0;
 
   static const double spacingSmallX = 4.0;
   static const double spacingSmall = 8.0;

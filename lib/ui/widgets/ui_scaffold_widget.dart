@@ -25,8 +25,9 @@ class UiScaffoldWidget extends StatelessWidget {
           child: Scaffold(
             appBar: AppBar(
               elevation: 0.0,
+              backgroundColor:
+                  Theme.of(context).colorScheme.primary.withAlpha(40),
               surfaceTintColor: Colors.transparent,
-              backgroundColor: Colors.transparent,
               title: Text(
                 title,
                 style: TextStyle(color: Theme.of(context).colorScheme.primary),
@@ -61,7 +62,25 @@ class UiScaffoldWidget extends StatelessWidget {
                 UiTheme.spacerSmallX,
               ],
             ),
-            body: body,
+            body: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomLeft,
+                  stops: const [
+                    0.1,
+                    0.5,
+                    0.9,
+                  ],
+                  colors: [
+                    Theme.of(context).colorScheme.primary.withAlpha(40),
+                    Theme.of(context).colorScheme.surface.withAlpha(30),
+                    Theme.of(context).colorScheme.primary.withAlpha(30),
+                  ],
+                ),
+              ),
+              child: SafeArea(child: body),
+            ),
           ),
         );
       },
