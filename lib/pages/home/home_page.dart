@@ -6,6 +6,7 @@ import 'package:issues/pages/home/cubit/home_cubit.dart';
 import 'package:issues/pages/home/widgets/home_issue_card_widget.dart';
 import 'package:issues/pages/home/widgets/home_menu_widget.dart';
 import 'package:issues/pages/home/widgets/home_new_issue_widget.dart';
+import 'package:issues/domain/models/home_page_model.dart';
 import 'package:issues/ui/ui_theme.dart';
 import 'package:issues/ui/widgets/ui_scaffold_widget.dart';
 
@@ -21,73 +22,76 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final homeCubit = context.read<HomeCubit>();
 
-    return UiScaffoldWidget(
-      title: AppLocalizations.of(context)!.issues,
-      body: BlocBuilder<HomeCubit, HomeState>(
-        builder: (context, state) {
-          if (state is HomeLoading) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (state is HomeLoaded) {
-            switch (state.currentPageIndex) {
-              case 0:
-                if (state.issueList.isEmpty) {
-                  return Center(
-                    child: Text(AppLocalizations.of(context)!.noIssues),
-                  );
+    return BlocBuilder<HomeCubit, HomeState>(
+      builder: (context, state) {
+        return UiScaffoldWidget(
+          title: state is HomeLoaded
+              ? state.currentPage.translate(context)
+              : AppLocalizations.of(context)!.issues,
+          body: Builder(
+            builder: (context) {
+              if (state is HomeLoading) {
+                return const Center(child: CircularProgressIndicator());
+              } else if (state is HomeLoaded) {
+                switch (state.currentPage) {
+                  case HomePageEnum.issueList:
+                    if (state.issueList.isEmpty) {
+                      return Center(
+                        child: Text(AppLocalizations.of(context)!.noIssues),
+                      );
+                    }
+                    return ListView.separated(
+                      padding: const EdgeInsets.all(UiTheme.spacingSmall),
+                      itemCount: state.issueList.length,
+                      separatorBuilder: (_, __) => UiTheme.spacerSmall,
+                      itemBuilder: (_, index) => HomeIssueCardWidget(
+                        issue: state.issueList[index],
+                      ),
+                    );
+                  case HomePageEnum.newIssue:
+                    return const HomeNewIssueWidget();
+                  case HomePageEnum.menu:
+                    return HomeMenuWidget(
+                      appCubit: appCubit,
+                    );
                 }
-                return ListView.separated(
-                  padding: const EdgeInsets.all(UiTheme.spacingSmall),
-                  itemCount: state.issueList.length,
-                  separatorBuilder: (_, __) => UiTheme.spacerSmall,
-                  itemBuilder: (_, index) => HomeIssueCardWidget(
-                    issue: state.issueList[index],
-                  ),
-                );
-              case 1:
-                return const HomeNewIssueWidget();
-              case 2:
-                return HomeMenuWidget(
-                  appCubit: appCubit,
-                );
-            }
-          }
-          return const SizedBox.shrink();
-        },
-      ),
-      bottomNavigationBar: BlocBuilder<HomeCubit, HomeState>(
-        buildWhen: (previous, current) =>
-            previous is HomeLoaded &&
-            current is HomeLoaded &&
-            previous.currentPageIndex != current.currentPageIndex,
-        builder: (context, state) {
-          return NavigationBar(
-            backgroundColor:
-                Theme.of(context).colorScheme.primary.withAlpha(20),
-            surfaceTintColor: Colors.transparent,
-            onDestinationSelected: (int index) {
-              homeCubit.setPageIndex(index);
+              }
+              return const SizedBox.shrink();
             },
-            selectedIndex: state is HomeLoaded ? state.currentPageIndex : 0,
-            destinations: <Widget>[
-              NavigationDestination(
-                selectedIcon: const Icon(Icons.home),
-                icon: const Icon(Icons.home_outlined),
-                label: AppLocalizations.of(context)!.home,
-              ),
-              NavigationDestination(
-                selectedIcon: const Icon(Icons.note_add),
-                icon: const Icon(Icons.note_add_outlined),
-                label: AppLocalizations.of(context)!.newIssue,
-              ),
-              NavigationDestination(
-                selectedIcon: const Icon(Icons.menu),
-                icon: const Icon(Icons.menu_outlined),
-                label: AppLocalizations.of(context)!.menu,
-              ),
-            ],
-          );
-        },
-      ),
+          ),
+          bottomNavigationBar: Builder(
+            builder: (context) {
+              return NavigationBar(
+                backgroundColor:
+                    Theme.of(context).colorScheme.primary.withAlpha(10),
+                surfaceTintColor: Colors.transparent,
+                onDestinationSelected: (int index) =>
+                    homeCubit.setPageIndex(HomePageEnum.values[index]),
+                selectedIndex: state is HomeLoaded
+                    ? state.currentPage.index
+                    : HomePageEnum.issueList.index,
+                destinations: <Widget>[
+                  NavigationDestination(
+                    selectedIcon: const Icon(Icons.home),
+                    icon: const Icon(Icons.home_outlined),
+                    label: AppLocalizations.of(context)!.home,
+                  ),
+                  NavigationDestination(
+                    selectedIcon: const Icon(Icons.note_add),
+                    icon: const Icon(Icons.note_add_outlined),
+                    label: AppLocalizations.of(context)!.newIssue,
+                  ),
+                  NavigationDestination(
+                    selectedIcon: const Icon(Icons.menu),
+                    icon: const Icon(Icons.menu_outlined),
+                    label: AppLocalizations.of(context)!.menu,
+                  ),
+                ],
+              );
+            },
+          ),
+        );
+      },
     );
   }
 }

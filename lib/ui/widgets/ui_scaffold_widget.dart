@@ -18,7 +18,7 @@ class UiScaffoldWidget extends StatelessWidget {
     return FlutterBannerWidget(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.primary.withAlpha(40),
+          backgroundColor: Theme.of(context).colorScheme.primary.withAlpha(30),
           surfaceTintColor: Colors.transparent,
           centerTitle: false,
           title: Text(
@@ -30,19 +30,17 @@ class UiScaffoldWidget extends StatelessWidget {
         body: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              begin: Alignment.topCenter,
+              begin: Alignment.topRight,
               end: Alignment.bottomCenter,
               stops: const [
                 0.1,
-                0.5,
-                0.95,
-                1.0,
+                0.2,
+                0.7,
               ],
               colors: [
-                Theme.of(context).colorScheme.primary.withAlpha(40),
+                Theme.of(context).colorScheme.primary.withAlpha(30),
+                Theme.of(context).colorScheme.primary.withAlpha(30),
                 Theme.of(context).colorScheme.surface.withAlpha(30),
-                Theme.of(context).colorScheme.surface.withAlpha(30),
-                Theme.of(context).colorScheme.primary.withAlpha(20),
               ],
             ),
           ),

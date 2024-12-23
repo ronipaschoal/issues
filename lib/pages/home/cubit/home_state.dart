@@ -8,20 +8,20 @@ final class HomeLoading extends HomeState {}
 
 final class HomeLoaded extends HomeState {
   final List<IssueModel> issueList;
-  final int currentPageIndex;
+  final HomePageEnum currentPage;
 
   HomeLoaded({
     required this.issueList,
-    this.currentPageIndex = 0,
+    this.currentPage = HomePageEnum.issueList,
   });
 
   HomeLoaded copyWith({
     List<IssueModel>? issueList,
-    int? currentPageIndex,
+    HomePageEnum? currentPage,
   }) {
     return HomeLoaded(
       issueList: issueList ?? this.issueList,
-      currentPageIndex: currentPageIndex ?? this.currentPageIndex,
+      currentPage: currentPage ?? this.currentPage,
     );
   }
 }
