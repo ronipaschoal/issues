@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:issues/ui/widgets/flutter_banner_widget.dart';
 
 class UiScaffoldWidget extends StatelessWidget {
@@ -26,6 +27,9 @@ class UiScaffoldWidget extends StatelessWidget {
             style: Theme.of(context).textTheme.bodyLarge,
             textAlign: TextAlign.start,
           ),
+          systemOverlayStyle: Theme.of(context).brightness == Brightness.light
+              ? SystemUiOverlayStyle.dark
+              : SystemUiOverlayStyle.light,
         ),
         body: Container(
           decoration: BoxDecoration(

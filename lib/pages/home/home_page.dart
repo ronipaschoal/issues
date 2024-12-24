@@ -61,32 +61,51 @@ class HomePage extends StatelessWidget {
           ),
           bottomNavigationBar: Builder(
             builder: (context) {
-              return NavigationBar(
-                backgroundColor:
-                    Theme.of(context).colorScheme.primary.withAlpha(10),
-                surfaceTintColor: Colors.transparent,
-                onDestinationSelected: (int index) =>
-                    homeCubit.setPageIndex(HomePageEnum.values[index]),
-                selectedIndex: state is HomeLoaded
-                    ? state.currentPage.index
-                    : HomePageEnum.issueList.index,
-                destinations: <Widget>[
-                  NavigationDestination(
-                    selectedIcon: const Icon(Icons.home),
-                    icon: const Icon(Icons.home_outlined),
-                    label: AppLocalizations.of(context)!.home,
+              return NavigationBarTheme(
+                data: NavigationBarThemeData(
+                  labelTextStyle: WidgetStateProperty.all(
+                    Theme.of(context).textTheme.bodySmall,
                   ),
-                  NavigationDestination(
-                    selectedIcon: const Icon(Icons.note_add),
-                    icon: const Icon(Icons.note_add_outlined),
-                    label: AppLocalizations.of(context)!.newIssue,
+                  iconTheme: WidgetStateProperty.resolveWith<IconThemeData>(
+                    (states) {
+                      if (states.contains(WidgetState.selected)) {
+                        return IconThemeData(
+                          color: Theme.of(context).colorScheme.surface,
+                        );
+                      }
+                      return IconThemeData(
+                        color: Theme.of(context).textTheme.bodySmall!.color,
+                      );
+                    },
                   ),
-                  NavigationDestination(
-                    selectedIcon: const Icon(Icons.menu),
-                    icon: const Icon(Icons.menu_outlined),
-                    label: AppLocalizations.of(context)!.menu,
-                  ),
-                ],
+                ),
+                child: NavigationBar(
+                  backgroundColor:
+                      Theme.of(context).colorScheme.primary.withAlpha(10),
+                  surfaceTintColor: Colors.transparent,
+                  onDestinationSelected: (int index) =>
+                      homeCubit.setPageIndex(HomePageEnum.values[index]),
+                  selectedIndex: state is HomeLoaded
+                      ? state.currentPage.index
+                      : HomePageEnum.issueList.index,
+                  destinations: <Widget>[
+                    NavigationDestination(
+                      selectedIcon: const Icon(Icons.home),
+                      icon: const Icon(Icons.home_outlined),
+                      label: AppLocalizations.of(context)!.home,
+                    ),
+                    NavigationDestination(
+                      selectedIcon: const Icon(Icons.note_add),
+                      icon: const Icon(Icons.note_add_outlined),
+                      label: AppLocalizations.of(context)!.newIssue,
+                    ),
+                    NavigationDestination(
+                      selectedIcon: const Icon(Icons.menu),
+                      icon: const Icon(Icons.menu_outlined),
+                      label: AppLocalizations.of(context)!.menu,
+                    ),
+                  ],
+                ),
               );
             },
           ),

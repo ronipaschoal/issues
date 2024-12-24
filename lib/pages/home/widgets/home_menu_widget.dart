@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:issues/config/cubit/app_cubit.dart';
 import 'package:issues/domain/models/locale_model.dart';
+import 'package:issues/domain/models/theme_model.dart';
 import 'package:issues/ui/ui_theme.dart';
 
 class HomeMenuWidget extends StatelessWidget {
@@ -37,29 +37,29 @@ class HomeMenuWidget extends StatelessWidget {
           if (Theme.of(context).brightness == Brightness.light) ...{
             ElevatedButton.icon(
               style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(UiTheme.spacingMedium),
                 alignment: Alignment.centerLeft,
               ),
-              onPressed: () => appCubit.changeThemeMode(ThemeMode.dark),
-              icon: const Icon(Icons.dark_mode_outlined),
-              label: Text(AppLocalizations.of(context)!.darkMode),
+              onPressed: () => appCubit.changeThemeMode(ThemeEnum.dark.theme),
+              icon: ThemeEnum.dark.icon,
+              label: Text(ThemeEnum.dark.translate(context)),
             ),
           } else ...{
             ElevatedButton.icon(
               style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(UiTheme.spacingMedium),
                 alignment: Alignment.centerLeft,
               ),
-              onPressed: () => appCubit.changeThemeMode(ThemeMode.light),
-              icon: const Icon(Icons.light_mode_outlined),
-              label: Text(AppLocalizations.of(context)!.lightMode),
+              onPressed: () => appCubit.changeThemeMode(ThemeEnum.light.theme),
+              icon: ThemeEnum.light.icon,
+              label: Text(ThemeEnum.light.translate(context)),
             ),
           },
           if (Localizations.localeOf(context) == LocaleEnum.pt.locale) ...{
             ElevatedButton.icon(
               onPressed: () => appCubit.changeLocale(LocaleEnum.en.locale),
               style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(UiTheme.spacingMedium),
                 alignment: Alignment.centerLeft,
               ),
               label: Text(LocaleEnum.en.translate(context)),
@@ -69,7 +69,7 @@ class HomeMenuWidget extends StatelessWidget {
             ElevatedButton.icon(
               onPressed: () => appCubit.changeLocale(LocaleEnum.pt.locale),
               style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(UiTheme.spacingMedium),
                 alignment: Alignment.centerLeft,
               ),
               label: Text(LocaleEnum.pt.translate(context)),
