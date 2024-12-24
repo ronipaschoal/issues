@@ -59,6 +59,10 @@ sealed class UiTheme {
         fontSize: UiTheme.fontSizeLarge,
         color: UiTheme.textColor,
       ),
+      titleLarge: TextStyle(
+        fontSize: UiTheme.fontSizeLarge,
+        color: UiTheme.textColor,
+      ),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: TextButton.styleFrom(
@@ -137,6 +141,7 @@ sealed class UiThemeDark {
       bodySmall: textTheme.bodySmall!.copyWith(color: textColorBright),
       bodyMedium: textTheme.bodyMedium!.copyWith(color: textColorBright),
       bodyLarge: textTheme.bodyLarge!.copyWith(color: textColorBright),
+      titleLarge: textTheme.titleLarge!.copyWith(color: textColorBright),
     ),
     inputDecorationTheme: InputDecorationTheme(
       floatingLabelStyle: inputDecorationTheme.floatingLabelStyle! //
