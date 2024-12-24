@@ -23,7 +23,7 @@ class UiScaffoldWidget extends StatelessWidget {
           centerTitle: false,
           title: Text(
             title,
-            style: TextStyle(color: Theme.of(context).colorScheme.primary),
+            style: Theme.of(context).textTheme.bodyLarge,
             textAlign: TextAlign.start,
           ),
         ),

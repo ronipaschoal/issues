@@ -27,31 +27,28 @@ class HomeIssueCardWidget extends StatelessWidget {
               vertical: 8.0,
               horizontal: 16.0,
             ),
-            child: ConstrainedBox(
-              constraints: const BoxConstraints.expand(),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        issue.id,
-                      ),
-                      UiTheme.spacerSmall,
-                      Text(
-                        issue.title,
-                        style: const TextStyle(fontSize: UiTheme.fontSizeSmall),
-                      ),
-                    ],
-                  ),
-                  Icon(
-                    Icons.arrow_forward_ios,
-                    color: Theme.of(context).colorScheme.primary,
-                    size: UiTheme.fontSizeRegular,
-                  ),
-                ],
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      issue.id,
+                    ),
+                    UiTheme.spacerSmall,
+                    Text(
+                      issue.title,
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
+                  ],
+                ),
+                Icon(
+                  Icons.arrow_forward_ios,
+                  color: Theme.of(context).colorScheme.primary,
+                  size: UiTheme.fontSizeMedium,
+                ),
+              ],
             ),
           ),
         ),

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
 sealed class UiTheme {
-  static const double fontSizeLarge = 44.0;
-  static const double fontSizeMedium = 24.0;
-  static const double fontSizeRegular = 16.0;
+  static const double fontSizeLarge = 24.0;
+  static const double fontSizeMedium = 16.0;
   static const double fontSizeSmall = 14.0;
 
   static const double spacingSmallX = 4.0;
@@ -39,6 +38,20 @@ sealed class UiTheme {
       surface: Color(0xFFF7F7F7),
       onSurface: Color(0xFF000000),
     ),
+    textTheme: const TextTheme(
+      bodySmall: TextStyle(
+        fontSize: fontSizeSmall,
+        color: Color(0xFF4A4A4A),
+      ),
+      bodyMedium: TextStyle(
+        fontSize: fontSizeMedium,
+        color: Color(0xFF3D3D3D),
+      ),
+      bodyLarge: TextStyle(
+        fontSize: fontSizeLarge,
+        color: Color(0xFF212121),
+      ),
+    ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: TextButton.styleFrom(
         padding: const EdgeInsets.all(spacingSmallX),
@@ -65,6 +78,20 @@ sealed class UiTheme {
       onError: Color(0xFF000000),
       surface: Color(0xFF101415),
       onSurface: Color(0xFFFFFFFF),
+    ),
+    textTheme: const TextTheme(
+      bodySmall: TextStyle(
+        fontSize: fontSizeSmall,
+        color: Color(0xFFBFBFBF),
+      ),
+      bodyMedium: TextStyle(
+        fontSize: fontSizeMedium,
+        color: Color(0xFFE1E1E1),
+      ),
+      bodyLarge: TextStyle(
+        fontSize: fontSizeLarge,
+        color: Color(0xFFF4F4F4),
+      ),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: TextButton.styleFrom(
