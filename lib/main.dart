@@ -41,6 +41,7 @@ class MyApp extends StatelessWidget {
           supportedLocales: const [
             Locale('pt', 'BR'),
             Locale('en', 'US'),
+            Locale('es', 'ES'),
           ],
           routerDelegate: Routes.config.routerDelegate,
           routeInformationParser: Routes.config.routeInformationParser,

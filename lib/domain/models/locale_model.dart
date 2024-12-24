@@ -4,15 +4,17 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 extension LocaleEnumExtension on LocaleEnum {
   String translate(BuildContext context) {
     return switch (this) {
-      LocaleEnum.en => AppLocalizations.of(context)!.english,
       LocaleEnum.pt => AppLocalizations.of(context)!.portuguese,
+      LocaleEnum.en => AppLocalizations.of(context)!.english,
+      LocaleEnum.es => AppLocalizations.of(context)!.spanish,
     };
   }
 }
 
 enum LocaleEnum {
+  pt('PT', Locale('pt', 'BR')),
   en('EN', Locale('en', 'US')),
-  pt('PT', Locale('pt', 'BR'));
+  es('ES', Locale('es', 'ES'));
 
   const LocaleEnum(this.text, this.locale);
 

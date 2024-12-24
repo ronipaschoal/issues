@@ -1,0 +1,12 @@
+{
+  "english": "Inglés",
+  "portuguese": "Portugués",
+  "spanish": "Español",
+  "darkMode": "Modo oscuro",
+  "lightMode": "Modo claro",
+  "issues": "Tareas",
+  "noIssues": "Sin tarea",
+  "home": "Inicio",
+  "newIssue": "Nuevo tarea",
+  "menu": "Menú"
+}

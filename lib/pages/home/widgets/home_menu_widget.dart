@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:issues/config/cubit/app_cubit.dart';
 import 'package:issues/domain/models/locale_model.dart';
 import 'package:issues/domain/models/theme_model.dart';
+import 'package:issues/routes.dart';
 import 'package:issues/ui/ui_theme.dart';
 
 class HomeMenuWidget extends StatelessWidget {
@@ -55,29 +56,49 @@ class HomeMenuWidget extends StatelessWidget {
               label: Text(ThemeEnum.light.translate(context)),
             ),
           },
-          if (Localizations.localeOf(context) == LocaleEnum.pt.locale) ...{
-            ElevatedButton.icon(
-              onPressed: () => appCubit.changeLocale(LocaleEnum.en.locale),
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.all(UiTheme.spacingMedium),
-                alignment: Alignment.centerLeft,
-              ),
-              label: Text(LocaleEnum.en.translate(context)),
-              icon: const Icon(Icons.language),
+          ElevatedButton.icon(
+            onPressed: () => _changeLocale(context),
+            style: ElevatedButton.styleFrom(
+              padding: const EdgeInsets.all(UiTheme.spacingMedium),
+              alignment: Alignment.centerLeft,
             ),
-          } else ...{
-            ElevatedButton.icon(
-              onPressed: () => appCubit.changeLocale(LocaleEnum.pt.locale),
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.all(UiTheme.spacingMedium),
-                alignment: Alignment.centerLeft,
-              ),
-              label: Text(LocaleEnum.pt.translate(context)),
-              icon: const Icon(Icons.language),
+            label: Text(
+              LocaleEnum.values.firstWhere((locale) {
+                return locale.locale == Localizations.localeOf(context);
+              }).translate(context),
             ),
-          },
+            icon: const Icon(Icons.language),
+          ),
         ],
       ),
+    );
+  }
+
+  void _changeLocale(BuildContext context) {
+    showModalBottomSheet(
+      enableDrag: true,
+      useSafeArea: true,
+      context: context,
+      builder: (context) {
+        return ListView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          padding: const EdgeInsets.all(UiTheme.spacingLarge),
+          itemCount: LocaleEnum.values.length,
+          itemBuilder: (context, index) => ElevatedButton.icon(
+            onPressed: () {
+              appCubit.changeLocale(LocaleEnum.values[index].locale);
+              Routes.pop();
+            },
+            style: ElevatedButton.styleFrom(
+              padding: const EdgeInsets.all(UiTheme.spacingMedium),
+              alignment: Alignment.centerLeft,
+            ),
+            label: Text(LocaleEnum.values[index].translate(context)),
+            icon: const Icon(Icons.language),
+          ),
+        );
+      },
     );
   }
 }

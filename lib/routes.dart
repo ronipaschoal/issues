@@ -26,6 +26,10 @@ sealed class Routes {
     return null;
   }
 
+  static void pop() {
+    config.pop();
+  }
+
   static void popToRoot() {
     while (config.canPop()) {
       config.pop();
