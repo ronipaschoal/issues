@@ -49,7 +49,9 @@ class HomePage extends StatelessWidget {
                       ),
                     );
                   case HomePageEnum.newIssue:
-                    return const HomeNewIssueWidget();
+                    return HomeNewIssueWidget(
+                      homeCubit: homeCubit,
+                    );
                   case HomePageEnum.menu:
                     return HomeMenuWidget(
                       appCubit: appCubit,

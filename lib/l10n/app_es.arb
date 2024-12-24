@@ -8,5 +8,10 @@
   "noIssues": "Sin tarea",
   "home": "Inicio",
   "newIssue": "Nuevo tarea",
+  "title": "Título",
+  "titlePrefix": "Prefijo del título",
+  "titlePrefixHelper": "Prefijo es opcional",
+  "description": "Descripción",
+  "project": "Proyecto",
   "menu": "Menú"
 }

@@ -8,5 +8,10 @@
   "noIssues": "Nenhuma tarefa",
   "home": "Home",
   "newIssue": "Nova Tarefa",
+  "title": "Título",
+  "titlePrefix": "Prefixo do Título",
+  "titlePrefixHelper": "Prefixo é opcional",
+  "description": "Descrição",
+  "project": "Projeto",
   "menu": "Menu"
 }

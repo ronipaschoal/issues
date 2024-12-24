@@ -8,5 +8,10 @@
   "noIssues": "No Issues",
   "home": "Home",
   "newIssue": "New Issue",
+  "title": "Title",
+  "titlePrefix": "Title Prefix",
+  "titlePrefixHelper": "Prefix is optional",
+  "description": "Description",
+  "project": "Project",
   "menu": "Menu"
 }

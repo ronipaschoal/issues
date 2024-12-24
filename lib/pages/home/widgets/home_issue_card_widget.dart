@@ -37,12 +37,10 @@ class HomeIssueCardWidget extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      issue.id,
-                    ),
+                    Text(issue.title),
                     UiTheme.spacerSmall,
                     Text(
-                      issue.title,
+                      issue.description,
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                   ],

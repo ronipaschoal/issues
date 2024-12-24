@@ -23,8 +23,23 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   void setPageIndex(HomePageEnum page) {
-    if (state is HomeLoaded) {
-      emit((state as HomeLoaded).copyWith(currentPage: page));
-    }
+    if (state is! HomeLoaded) return;
+
+    emit((state as HomeLoaded).copyWith(currentPage: page));
+  }
+
+  void createIssue(IssueModel issue) {
+    final state = this.state;
+    if (state is! HomeLoaded) return;
+
+    emit(
+      state.copyWith(
+        currentPage: HomePageEnum.issueList,
+        issueList: [
+          ...state.issueList,
+          issue,
+        ],
+      ),
+    );
   }
 }
