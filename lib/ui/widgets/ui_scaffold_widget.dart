@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:issues/domain/models/theme_model.dart';
 import 'package:issues/ui/widgets/flutter_banner_widget.dart';
 
 class UiScaffoldWidget extends StatelessWidget {
@@ -16,21 +16,25 @@ class UiScaffoldWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return FlutterBannerWidget(
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.primary.withAlpha(30),
-          surfaceTintColor: Colors.transparent,
-          centerTitle: false,
-          title: Text(
-            title,
-            style: Theme.of(context).textTheme.bodyLarge,
-            textAlign: TextAlign.start,
-          ),
-          systemOverlayStyle: Theme.of(context).brightness == Brightness.light
-              ? SystemUiOverlayStyle.dark
-              : SystemUiOverlayStyle.light,
-        ),
+        appBar: title.isEmpty
+            ? null
+            : AppBar(
+                backgroundColor: theme.colorScheme.primary.withAlpha(30),
+                surfaceTintColor: Colors.transparent,
+                centerTitle: false,
+                title: Text(
+                  title,
+                  style: theme.textTheme.titleLarge,
+                  textAlign: TextAlign.start,
+                ),
+                systemOverlayStyle: ThemeEnum.values.firstWhere((locale) {
+                  return theme.brightness == locale.brightness;
+                }).systemUiOverlayStyle,
+              ),
         body: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(

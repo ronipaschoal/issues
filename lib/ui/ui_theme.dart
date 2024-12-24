@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 sealed class UiTheme {
-  static const double fontSizeLarge = 24.0;
+  static const double fontSizeLarge = 18.0;
   static const double fontSizeMedium = 16.0;
   static const double fontSizeSmall = 14.0;
 
@@ -22,15 +22,23 @@ sealed class UiTheme {
   static const SizedBox spacerLargeX =
       SizedBox(height: spacingLargeX, width: spacingLargeX);
 
-  static final lightTheme = ThemeData(
+  static const Color primaryColor = Color(0xFF1B6A7C);
+  static const Color primaryColorMedium = Color(0x881B6A7C);
+  static const Color primaryColorBright = Color(0x221B6A7C);
+
+  static const Color textColor = Color(0xFF212121);
+  static const Color textColorMedium = Color(0xBB212121);
+  static const Color textColorBright = Color(0x88212121);
+
+  static final theme = ThemeData(
     brightness: Brightness.light,
     scaffoldBackgroundColor: const Color(0xFFFFFFFF),
     colorScheme: const ColorScheme(
       brightness: Brightness.light,
-      primary: Color(0xFF1B6A7C),
+      primary: UiTheme.primaryColor,
       onPrimary: Color(0xFFFFFFFF),
       primaryContainer: Color(0xFF11434E),
-      onPrimaryContainer: Color.fromARGB(255, 252, 248, 250),
+      onPrimaryContainer: Color(0xFFFCF8FA),
       secondary: Color(0xFF0F8080),
       onSecondary: Color(0xFFFFFFFF),
       error: Color(0xFFB00020),
@@ -40,35 +48,81 @@ sealed class UiTheme {
     ),
     textTheme: const TextTheme(
       bodySmall: TextStyle(
-        fontSize: fontSizeSmall,
-        color: Color(0xFF4A4A4A),
+        fontSize: UiTheme.fontSizeSmall,
+        color: UiTheme.textColorBright,
       ),
       bodyMedium: TextStyle(
-        fontSize: fontSizeMedium,
-        color: Color(0xFF3D3D3D),
+        fontSize: UiTheme.fontSizeMedium,
+        color: UiTheme.textColorMedium,
       ),
       bodyLarge: TextStyle(
-        fontSize: fontSizeLarge,
-        color: Color(0xFF212121),
+        fontSize: UiTheme.fontSizeLarge,
+        color: UiTheme.textColor,
       ),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: TextButton.styleFrom(
-        padding: const EdgeInsets.all(spacingSmallX),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8.0),
-        ),
         elevation: 0.0,
+        padding: const EdgeInsets.all(UiTheme.spacingMedium),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+      ),
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      floatingLabelStyle: const TextStyle(
+        color: UiTheme.primaryColor,
+        fontSize: UiTheme.fontSizeSmall,
+      ),
+      labelStyle: const TextStyle(
+        fontSize: UiTheme.fontSizeMedium,
+        color: UiTheme.textColorMedium,
+      ),
+      hintStyle: const TextStyle(
+        fontSize: UiTheme.fontSizeMedium,
+        color: UiTheme.textColorMedium,
+      ),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8.0),
+        borderSide: const BorderSide(
+          width: 2.0,
+          color: UiTheme.primaryColorBright,
+        ),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8.0),
+        borderSide: const BorderSide(
+          width: 2.0,
+          color: UiTheme.primaryColorBright,
+        ),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8.0),
+        borderSide: const BorderSide(
+          width: 2.0,
+          color: UiTheme.primaryColor,
+        ),
       ),
     ),
   );
+}
 
-  static final darkTheme = ThemeData(
+sealed class UiThemeDark {
+  static const Color primaryColor = Color(0xFF35D0F2);
+  static const Color primaryColorMedium = Color(0x8835D0F2);
+  static const Color primaryColorBright = Color(0x2235D0F2);
+
+  static const Color textColor = Color(0xFFF4F4F4);
+  static const Color textColorMedium = Color(0xBBF4F4F4);
+  static const Color textColorBright = Color(0x88F4F4F4);
+
+  static final textTheme = UiTheme.theme.textTheme;
+  static final inputDecorationTheme = UiTheme.theme.inputDecorationTheme;
+
+  static final theme = UiTheme.theme.copyWith(
     brightness: Brightness.dark,
     scaffoldBackgroundColor: const Color(0xFF000000),
     colorScheme: const ColorScheme(
       brightness: Brightness.dark,
-      primary: Color(0xFF35D0F2),
+      primary: primaryColor,
       onPrimary: Color(0xFF5C113B),
       primaryContainer: Color(0xFF248CA3),
       onPrimaryContainer: Color(0xFFFFD8E6),
@@ -79,27 +133,29 @@ sealed class UiTheme {
       surface: Color(0xFF101415),
       onSurface: Color(0xFFFFFFFF),
     ),
-    textTheme: const TextTheme(
-      bodySmall: TextStyle(
-        fontSize: fontSizeSmall,
-        color: Color(0xFFBFBFBF),
-      ),
-      bodyMedium: TextStyle(
-        fontSize: fontSizeMedium,
-        color: Color(0xFFE1E1E1),
-      ),
-      bodyLarge: TextStyle(
-        fontSize: fontSizeLarge,
-        color: Color(0xFFF4F4F4),
-      ),
+    textTheme: TextTheme(
+      bodySmall: textTheme.bodySmall!.copyWith(color: textColorBright),
+      bodyMedium: textTheme.bodyMedium!.copyWith(color: textColorBright),
+      bodyLarge: textTheme.bodyLarge!.copyWith(color: textColorBright),
     ),
-    elevatedButtonTheme: ElevatedButtonThemeData(
-      style: TextButton.styleFrom(
-        padding: const EdgeInsets.all(spacingSmallX),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8.0),
-        ),
-        elevation: 0.0,
+    inputDecorationTheme: InputDecorationTheme(
+      floatingLabelStyle: inputDecorationTheme.floatingLabelStyle! //
+          .copyWith(color: primaryColor),
+      labelStyle: inputDecorationTheme.labelStyle! //
+          .copyWith(color: textColorMedium),
+      hintStyle: inputDecorationTheme.hintStyle! //
+          .copyWith(color: textColorMedium),
+      border: inputDecorationTheme.border!.copyWith(
+        borderSide: inputDecorationTheme.border!.borderSide
+            .copyWith(color: primaryColorBright),
+      ),
+      enabledBorder: inputDecorationTheme.enabledBorder!.copyWith(
+        borderSide: inputDecorationTheme.enabledBorder!.borderSide
+            .copyWith(color: primaryColorBright),
+      ),
+      focusedBorder: inputDecorationTheme.focusedBorder!.copyWith(
+        borderSide: inputDecorationTheme.focusedBorder!.borderSide
+            .copyWith(color: primaryColor),
       ),
     ),
   );

@@ -30,8 +30,8 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           locale: state.locale,
           themeMode: state.themeMode,
-          theme: UiTheme.lightTheme,
-          darkTheme: UiTheme.darkTheme,
+          theme: UiTheme.theme,
+          darkTheme: UiThemeDark.theme,
           localizationsDelegates: const [
             AppLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,

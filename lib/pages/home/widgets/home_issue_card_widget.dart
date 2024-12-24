@@ -16,11 +16,15 @@ class HomeIssueCardWidget extends StatelessWidget {
     return ClipRRect(
       borderRadius: const BorderRadius.all(Radius.circular(4.0)),
       child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+        filter: ImageFilter.blur(sigmaX: 4.0, sigmaY: 4.0),
         child: Container(
           height: 80.0,
           decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.surface.withAlpha(80),
+            border: Border.all(
+              width: 2.0,
+              color: Theme.of(context).colorScheme.primary.withAlpha(20),
+            ),
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(
