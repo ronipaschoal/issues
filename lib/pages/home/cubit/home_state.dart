@@ -24,6 +24,22 @@ final class HomeLoaded extends HomeState {
       currentPage: currentPage ?? this.currentPage,
     );
   }
+
+  factory HomeLoaded.fromJson(Map<String, dynamic> map) {
+    return HomeLoaded(
+      issueList: (jsonDecode(map['issueList']) as List)
+          .map((issue) => IssueModel.fromJson(issue))
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'issueList': jsonEncode(
+        issueList.map((issue) => issue.toJson()).toList(),
+      ),
+    };
+  }
 }
 
 final class HomeError extends HomeState {

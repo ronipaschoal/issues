@@ -1,8 +1,15 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'issue_model.g.dart';
+
 enum IssueStateEnum {
+  @JsonValue(0)
   open,
+  @JsonValue(1)
   closed,
 }
 
+@JsonSerializable()
 class IssueModel {
   final String id;
   final String? titlePrefix;
@@ -20,14 +27,8 @@ class IssueModel {
     required this.project,
   });
 
-  factory IssueModel.fromJson(Map<String, dynamic> json) {
-    return IssueModel(
-      id: json['id'],
-      titlePrefix: json['titlePrefix'],
-      title: json['title'],
-      description: json['description'],
-      state: json['state'],
-      project: json['project'],
-    );
-  }
+  factory IssueModel.fromJson(Map<String, dynamic> json) =>
+      _$IssueModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$IssueModelToJson(this);
 }

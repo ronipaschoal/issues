@@ -46,6 +46,9 @@ class HomePage extends StatelessWidget {
                       separatorBuilder: (_, __) => UiTheme.spacerSmall,
                       itemBuilder: (_, index) => HomeIssueCardWidget(
                         issue: state.issueList[index],
+                        onTap: () {},
+                        onLongPress: () => homeCubit //
+                            .removeIssue(state.issueList[index].id),
                       ),
                     );
                   case HomePageEnum.newIssue:
