@@ -5,8 +5,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:issues/config/cubit/app_cubit.dart';
-import 'package:issues/routes.dart';
-import 'package:issues/ui/ui_theme.dart';
+import 'package:issues/routing/router.dart';
+import 'package:issues/ui/core/theme/ui_theme.dart';
 import 'package:path_provider/path_provider.dart';
 
 void main() async {

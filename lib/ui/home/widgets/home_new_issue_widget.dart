@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:issues/domain/models/issue_model.dart';
-import 'package:issues/pages/home/cubit/home_cubit.dart';
-import 'package:issues/ui/ui_theme.dart';
+import 'package:issues/ui/home/cubit/home_cubit.dart';
+import 'package:issues/ui/core/theme/ui_theme.dart';
 
 class HomeNewIssueWidget extends StatelessWidget {
   final HomeCubit homeCubit;
@@ -23,7 +23,7 @@ class HomeNewIssueWidget extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        spacing: UiTheme.spacingMedium,
+        spacing: UiTheme.sizeMedium,
         children: [
           TextField(
             controller: titlePrefix,

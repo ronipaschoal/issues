@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
-import 'package:issues/pages/home/home_route.dart';
+import 'package:issues/ui/home/home_route.dart';
 
 sealed class Routes {
   static final _rootNavigatorKey = GlobalKey<NavigatorState>();

@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:issues/config/cubit/app_cubit.dart';
 import 'package:issues/domain/models/locale_model.dart';
 import 'package:issues/domain/models/theme_model.dart';
-import 'package:issues/routes.dart';
-import 'package:issues/ui/ui_theme.dart';
+import 'package:issues/routing/router.dart';
+import 'package:issues/ui/core/theme/ui_theme.dart';
 
 class HomeMenuWidget extends StatelessWidget {
   final AppCubit appCubit;
@@ -17,11 +17,11 @@ class HomeMenuWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(UiTheme.spacingMedium),
+      padding: const EdgeInsets.all(UiTheme.sizeMedium),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        spacing: UiTheme.spacingMedium,
+        spacing: UiTheme.sizeMedium,
         children: [
           BlocBuilder<AppCubit, AppState>(
             builder: (context, state) {
@@ -38,7 +38,7 @@ class HomeMenuWidget extends StatelessWidget {
           if (Theme.of(context).brightness == Brightness.light) ...{
             ElevatedButton.icon(
               style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.all(UiTheme.spacingMedium),
+                padding: const EdgeInsets.all(UiTheme.sizeMedium),
                 alignment: Alignment.centerLeft,
               ),
               onPressed: () => appCubit.changeThemeMode(ThemeEnum.dark.theme),
@@ -48,7 +48,7 @@ class HomeMenuWidget extends StatelessWidget {
           } else ...{
             ElevatedButton.icon(
               style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.all(UiTheme.spacingMedium),
+                padding: const EdgeInsets.all(UiTheme.sizeMedium),
                 alignment: Alignment.centerLeft,
               ),
               onPressed: () => appCubit.changeThemeMode(ThemeEnum.light.theme),
@@ -59,7 +59,7 @@ class HomeMenuWidget extends StatelessWidget {
           ElevatedButton.icon(
             onPressed: () => _changeLocale(context),
             style: ElevatedButton.styleFrom(
-              padding: const EdgeInsets.all(UiTheme.spacingMedium),
+              padding: const EdgeInsets.all(UiTheme.sizeMedium),
               alignment: Alignment.centerLeft,
             ),
             label: Text(
@@ -83,7 +83,7 @@ class HomeMenuWidget extends StatelessWidget {
         return ListView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          padding: const EdgeInsets.all(UiTheme.spacingLarge),
+          padding: const EdgeInsets.all(UiTheme.sizeLarge),
           itemCount: LocaleEnum.values.length,
           itemBuilder: (context, index) => ElevatedButton.icon(
             onPressed: () {
@@ -91,7 +91,7 @@ class HomeMenuWidget extends StatelessWidget {
               Routes.pop();
             },
             style: ElevatedButton.styleFrom(
-              padding: const EdgeInsets.all(UiTheme.spacingMedium),
+              padding: const EdgeInsets.all(UiTheme.sizeMedium),
               alignment: Alignment.centerLeft,
             ),
             label: Text(LocaleEnum.values[index].translate(context)),

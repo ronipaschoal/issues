@@ -5,30 +5,31 @@ sealed class UiTheme {
   static const double fontSizeMedium = 16.0;
   static const double fontSizeSmall = 14.0;
 
-  static const double spacingSmallX = 4.0;
-  static const double spacingSmall = 8.0;
-  static const double spacingMedium = 16.0;
-  static const double spacingLarge = 32.0;
-  static const double spacingLargeX = 64.0;
+  static const double sizeSmallX = 4.0;
+  static const double sizeSmall = 8.0;
+  static const double sizeMedium = 16.0;
+  static const double sizeLarge = 32.0;
+  static const double sizeLargeX = 64.0;
 
-  static const SizedBox spacerSmallX =
-      SizedBox(height: spacingSmallX, width: spacingSmallX);
-  static const SizedBox spacerSmall =
-      SizedBox(height: spacingSmall, width: spacingSmall);
-  static const SizedBox spacerMedium =
-      SizedBox(height: spacingMedium, width: spacingMedium);
-  static const SizedBox spacerLarge =
-      SizedBox(height: spacingLarge, width: spacingLarge);
-  static const SizedBox spacerLargeX =
-      SizedBox(height: spacingLargeX, width: spacingLargeX);
+  static const borderRadiusNone = BorderRadius.zero;
+  static const borderRadiusSm = BorderRadius.all(Radius.circular(2.0));
+  static const borderRadiusMd = BorderRadius.all(Radius.circular(4.0));
+  static const borderRadiusLg = BorderRadius.all(Radius.circular(8.0));
+  static const borderRadiusPill = BorderRadius.all(Radius.circular(400.0));
 
-  static const Color primaryColor = Color(0xFF1B6A7C);
-  static const Color primaryColorMedium = Color(0x881B6A7C);
-  static const Color primaryColorBright = Color(0x221B6A7C);
+  static const spacerSmallX = SizedBox(height: sizeSmallX, width: sizeSmallX);
+  static const spacerSmall = SizedBox(height: sizeSmall, width: sizeSmall);
+  static const spacerMedium = SizedBox(height: sizeMedium, width: sizeMedium);
+  static const spacerLarge = SizedBox(height: sizeLarge, width: sizeLarge);
+  static const spacerLargeX = SizedBox(height: sizeLargeX, width: sizeLargeX);
 
-  static const Color textColor = Color(0xFF212121);
-  static const Color textColorMedium = Color(0xBB212121);
-  static const Color textColorBright = Color(0x88212121);
+  static const primaryColor = Color(0xFF1B6A7C);
+  static const primaryColorMedium = Color(0x881B6A7C);
+  static const primaryColorBright = Color(0x221B6A7C);
+
+  static const textColor = Color(0xFF212121);
+  static const textColorMedium = Color(0xBB212121);
+  static const textColorBright = Color(0x88212121);
 
   static final theme = ThemeData(
     brightness: Brightness.light,
@@ -67,7 +68,7 @@ sealed class UiTheme {
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: TextButton.styleFrom(
         elevation: 0.0,
-        padding: const EdgeInsets.all(UiTheme.spacingMedium),
+        padding: const EdgeInsets.all(UiTheme.sizeMedium),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
       ),
     ),
@@ -110,13 +111,13 @@ sealed class UiTheme {
 }
 
 sealed class UiThemeDark {
-  static const Color primaryColor = Color(0xFF35D0F2);
-  static const Color primaryColorMedium = Color(0x8835D0F2);
-  static const Color primaryColorBright = Color(0x2235D0F2);
+  static const primaryColor = Color(0xFF35D0F2);
+  static const primaryColorMedium = Color(0x8835D0F2);
+  static const primaryColorBright = Color(0x2235D0F2);
 
-  static const Color textColor = Color(0xFFF4F4F4);
-  static const Color textColorMedium = Color(0xBBF4F4F4);
-  static const Color textColorBright = Color(0x88F4F4F4);
+  static const textColor = Color(0xFFF4F4F4);
+  static const textColorMedium = Color(0xBBF4F4F4);
+  static const textColorBright = Color(0x88F4F4F4);
 
   static final textTheme = UiTheme.theme.textTheme;
   static final inputDecorationTheme = UiTheme.theme.inputDecorationTheme;

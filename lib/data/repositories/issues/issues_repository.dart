@@ -1,4 +1,4 @@
-import 'package:issues/data/services/issues_services.dart';
+import 'package:issues/data/services/api/issues_services.dart';
 import 'package:issues/domain/models/issue_model.dart';
 
 class IssuesRepository {

@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:issues/domain/models/issue_model.dart';
-import 'package:issues/ui/ui_theme.dart';
+import 'package:issues/ui/core/theme/ui_theme.dart';
 
 class HomeIssueCardWidget extends StatelessWidget {
   final IssueModel issue;

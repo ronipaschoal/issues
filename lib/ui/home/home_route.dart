@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:issues/config/cubit/app_cubit.dart';
 import 'package:issues/data/repositories/issues/issues_repository.dart';
-import 'package:issues/data/services/issues_services.dart';
-import 'package:issues/pages/home/cubit/home_cubit.dart';
-import 'package:issues/pages/home/home_page.dart';
+import 'package:issues/data/services/api/issues_services.dart';
+import 'package:issues/ui/home/cubit/home_cubit.dart';
+import 'package:issues/ui/home/home_page.dart';
 
 sealed class HomeRoute {
   static const String path = '/home';
