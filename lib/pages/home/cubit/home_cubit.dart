@@ -22,7 +22,8 @@ class HomeCubit extends HydratedCubit<HomeState> {
 
   @override
   Map<String, dynamic> toJson(HomeState state) {
-    return (state as HomeLoaded).toJson();
+    if (state is! HomeLoaded) return {};
+    return state.toJson();
   }
 
   void setPageIndex(HomePageEnum page) {
@@ -35,8 +36,8 @@ class HomeCubit extends HydratedCubit<HomeState> {
     try {
       final state = this.state;
 
+      emit(HomeLoading(issueList: state is! HomeLoaded ? [] : state.issueList));
       final issueList = await issuesRepository.getIssues();
-      await Future.delayed(const Duration(seconds: 1));
 
       if (state is! HomeLoaded) {
         emit(HomeLoaded(issueList: issueList));

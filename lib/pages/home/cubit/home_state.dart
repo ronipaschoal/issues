@@ -4,7 +4,15 @@ sealed class HomeState {}
 
 final class HomeInitial extends HomeState {}
 
-final class HomeLoading extends HomeState {}
+final class HomeLoading extends HomeState {
+  final List<IssueModel> issueList;
+  final HomePageEnum currentPage;
+
+  HomeLoading({
+    this.issueList = const [],
+    this.currentPage = HomePageEnum.issueList,
+  });
+}
 
 final class HomeLoaded extends HomeState {
   final List<IssueModel> issueList;

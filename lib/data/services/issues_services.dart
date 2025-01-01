@@ -3,6 +3,7 @@ import 'package:issues/domain/models/issue_model.dart';
 class IssuesServices {
   Future<List<IssueModel>> getIssues() async {
     // TODO Get issues from the server
+    await Future.delayed(const Duration(seconds: 1));
     return [];
   }
 
