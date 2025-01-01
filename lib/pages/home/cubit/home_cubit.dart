@@ -14,13 +14,10 @@ class HomeCubit extends HydratedCubit<HomeState> {
   @override
   HomeState fromJson(Map<String, dynamic> json) {
     try {
-      final initialData = HomeLoaded.fromJson(json);
-      emit(initialData);
-      return initialData;
+      return HomeLoaded.fromJson(json);
     } catch (error) {
-      emit(HomeError('Failed to load issues: $error'));
+      return HomeError('Failed to load issues: $error');
     }
-    return HomeInitial();
   }
 
   @override

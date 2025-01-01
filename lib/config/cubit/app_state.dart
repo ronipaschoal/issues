@@ -21,4 +21,25 @@ class AppState {
       loggedUser: loggedUser ?? this.loggedUser,
     );
   }
+
+  factory AppState.fromJson(Map<String, dynamic> json) {
+    return AppState(
+      locale: json['locale'] != null ? Locale(json['locale']) : null,
+      themeMode: json['themeMode'] != null
+          ? ThemeMode.values.firstWhere(
+              (theme) => theme.toString() == json['themeMode'],
+              orElse: () => ThemeMode.system,
+            )
+          : ThemeMode.system,
+      loggedUser: json['loggedUser'] ?? '',
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'locale': locale?.languageCode,
+      'themeMode': themeMode.toString(),
+      'loggedUser': loggedUser,
+    };
+  }
 }
