@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:issues/domain/models/theme_model.dart';
-import 'package:issues/utils/flutter_banner/flutter_banner_widget.dart';
+import 'package:issues/ui/core/widgets/flutter_banner_widget.dart';
 
 class UiScaffoldWidget extends StatelessWidget {
   final String title;

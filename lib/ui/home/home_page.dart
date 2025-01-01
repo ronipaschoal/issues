@@ -9,6 +9,7 @@ import 'package:issues/ui/home/widgets/home_new_issue_widget.dart';
 import 'package:issues/domain/models/home_page_model.dart';
 import 'package:issues/ui/core/theme/ui_theme.dart';
 import 'package:issues/ui/core/widgets/ui_scaffold_widget.dart';
+import 'package:issues/utils/shimmer/shimmer.dart';
 
 class HomePage extends StatelessWidget {
   final AppCubit appCubit;
@@ -31,7 +32,14 @@ class HomePage extends StatelessWidget {
           body: Builder(
             builder: (context) {
               if (state is HomeLoading) {
-                return const Center(child: CircularProgressIndicator());
+                return ShimmmerScaffold(
+                  child: ListView.separated(
+                    padding: const EdgeInsets.all(UiTheme.sizeSmall),
+                    itemCount: 6,
+                    separatorBuilder: (_, __) => UiTheme.spacerSmall,
+                    itemBuilder: (_, __) => Shimmmer.box(height: 80.0),
+                  ),
+                );
               } else if (state is HomeLoaded) {
                 switch (state.currentPage) {
                   case HomePageEnum.issueList:
